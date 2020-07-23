@@ -23,11 +23,19 @@ private fun buildSubtractionNumber(decimal: Int, referenceRomanNumeral: BasicRom
     return subtractRomanNumeral.toString() + nextRomanNumeral.toString()
 }
 
-private fun buildRomanNumberWithRepetition(decimal: Int, romanRomanNumeral: BasicRomanNumeral): String {
-    val timesRepeatingRoman = decimal / romanRomanNumeral.decimalEquivalent
-    val decimalRomanNumeralMod = decimal % romanRomanNumeral.decimalEquivalent
-    val romanNumeralPart = romanRomanNumeral.toString().repeat(timesRepeatingRoman)
+private fun buildRomanNumberWithRepetition(decimal: Int, basicRomanNumeral: BasicRomanNumeral): String {
+    val rationDecimalRomanNumeral = decimal / basicRomanNumeral.decimalEquivalent
+    val decimalRomanNumeralMod = decimal % basicRomanNumeral.decimalEquivalent
+
+    val rationDecimal = rationDecimalRomanNumeral * basicRomanNumeral.decimalEquivalent
+    val romanNumeralPart = when {
+        rationDecimalRomanNumeral == 0 -> ""
+        isRomanNumeralWithSubtraction(rationDecimal, basicRomanNumeral.next()) ->
+            buildSubtractionNumber(rationDecimal, basicRomanNumeral)
+        else -> basicRomanNumeral.toString().repeat(rationDecimalRomanNumeral)
+    }
+
     return if (decimalRomanNumeralMod > 0)
-        romanNumeralPart + buildRomanNumberWithRepetition(decimalRomanNumeralMod, romanRomanNumeral.previous())
+        romanNumeralPart + buildRomanNumberWithRepetition(decimalRomanNumeralMod, basicRomanNumeral.previous())
         else romanNumeralPart
 }

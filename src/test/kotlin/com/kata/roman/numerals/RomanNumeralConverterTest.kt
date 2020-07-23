@@ -29,6 +29,7 @@ class RomanNumeralsTestCases {
                 Arguments.of(21, "XXI"),
                 Arguments.of(25, "XXV"),
                 Arguments.of(26, "XXVI"),
+                Arguments.of(45, "XLV"),
                 Arguments.of(50, "L"),
                 Arguments.of(52, "LII"),
                 Arguments.of(100, "C"),
