@@ -4,12 +4,11 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 
-data class DecimalRomanCase (val decimalNumber: Int, val romanNumeral: String)
+private data class DecimalRomanCase (val decimalNumber: Int, val romanNumeral: String)
 
-class RomanNumeralsTestCases {
+private class RomanNumeralsTestCases {
 
     companion object {
         @JvmStatic
@@ -47,5 +46,4 @@ class RomanNumeralConverterTest {
     fun shouldConvertToNumeral(decimalNumber: Int, romanNumeral: String) {
         assertThat(convertToRomanNumeral(decimalNumber)).isEqualTo(romanNumeral)
     }
-
 }
