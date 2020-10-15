@@ -10,10 +10,9 @@ enum class BasicRomanNumeral(val decimalEquivalent: Int, val subtract: Boolean) 
     M(1000, false);
 
     fun next(): BasicRomanNumeral {
-        val indexOf = values().indexOf(this)
-        return when (values().size) {
-            indexOf -> this
-            else -> values()[indexOf + 1]
+        return when (val foundIndexOf = values().indexOf(this)) {
+            values().size -> this
+            else -> values()[foundIndexOf + 1]
         }
     }
 
